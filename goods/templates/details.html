@@ -8,10 +8,10 @@
       <div class="inner-cont0">
         <div class="inner-cont1 w1200">
           <div class="inner-cont2">
-            <a href="index.html" class="active">首页</a>
-			<a href="commodity.html" >所有商品</a>
-			<a href="shopcart.html" >购物车</a>
-            <a href="shopper.html">个人中心</a>
+            <a href="{% url 'index' %}" class="active">首页</a>
+			<a href="{% url 'commondity' %}" >所有商品</a>
+			<a href="{% url 'shoppercart' %}" >购物车</a>
+            <a href="{% url 'shopper' %}">个人中心</a>
           </div>
         </div>
       </div>
@@ -41,11 +41,11 @@
             </div>
             <div class="choose-attrs">
               <div class="color layui-clear"><span class="title">颜&nbsp;&nbsp;&nbsp;&nbsp;色</span> <div class="color-cont"><span class="btn active">{{ commo.sezes }}</span></div></div>
-              <div class="number layui-clear"><span class="title">数&nbsp;&nbsp;&nbsp;&nbsp;量</span><div class="number-cont"><span class="cut btn">-</span><input onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" maxlength="4" type="" name="" value="1"><span class="add btn">+</span></div></div>
+              <div class="number layui-clear"><span class="title">数&nbsp;&nbsp;&nbsp;&nbsp;量</span><div class="number-cont"><span class="cut btn">-</span><input onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" maxlength="4" type="" id="quantity" value="1"><span class="add btn">+</span></div></div>
             </div>
             <div class="choose-btns">
               <button class="layui-btn layui-btn-primary purchase-btn">立刻购买</button>
-              <button class="layui-btn  layui-btn-danger car-btn"><i class="layui-icon layui-icon-cart-simple"></i>加入购物车</button>  
+              <button class="layui-btn  layui-btn-danger car-btn" id="carbtn"><i class="layui-icon layui-icon-cart-simple"></i>加入购物车</button>
             </div>
           </div>
         </div>
@@ -85,7 +85,6 @@
       $('.number-cont .btn').on('click',function(){
         if($(this).hasClass('add')){
           cur++;
-         
         }else{
           if(cur > 1){
             cur--;
@@ -93,7 +92,15 @@
         }
         $('.number-cont input').val(cur)
       })
-      
+  });
+
+  $(function () {
+      $("#carbtn").click(function () {
+          var re=/([0-9]+)/;
+          var quantity=$("#quantity").val();
+          var id=location.pathname.match(re)[0];
+          window.location="/shopper/shoppercart?id="+id+"&quantity="+quantity;
+      });
   });
 </script>
 {% endblock %}

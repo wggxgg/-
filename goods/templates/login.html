@@ -9,8 +9,8 @@
           <div class="inner-cont2">
             <a href="{% url 'index' %}" class="active">首页</a>
 			<a href="{% url 'commondity' %}" >所有商品</a>
-			<a href="shopcart.html" >购物车</a>
-            <a href="shopper.html">个人中心</a>
+			<a href="{% url 'shoppercart' %}" >购物车</a>
+            <a href="{% url 'shopper' %}">个人中心</a>
           </div>
         </div>
       </div>
@@ -18,7 +18,8 @@
     <div class="login-bg">
       <div class="login-cont w1200">
         <div class="form-box">
-          <form class="layui-form" action="">
+          <form class="layui-form" method="post" action="">
+              {% csrf_token %}
             <legend>手机号注册登录</legend>
             <div class="layui-form-item">
               <div class="layui-inline iphone">

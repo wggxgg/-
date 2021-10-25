@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-{% extends 'base.html' %}
+
 {% load static %}
 
-{% block content %}
     <div class="content content-nav-base commodity-content">
     <div class="main-nav">
         <div class="inner-cont0">
             <div class="inner-cont1 w1200">
                 <div class="inner-cont2">
-                <a href="{% url 'index' %}" class="active">首页</a>
-                <a href="{% url 'commondity' %}" >所有商品</a>
-                <a href="{% url 'shoppercart' %}" >购物车</a>
-                <a href="{% url 'shopper' %}">个人中心</a>
+                    <a href="index.html" class="active">首页</a>
+                    <a href="commodity.html">所有商品</a>
+                    <a href="shopcart.html">购物车</a>
+                    <a href="shopper.html">个人中心</a>
                 </div>
             </div>
         </div>
@@ -113,5 +111,4 @@
 
         });
     </script>
-{% endblock %}
 </div>

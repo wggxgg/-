@@ -1,7 +1,9 @@
 from django.urls import path
-from . import views
-
+from .views import *
 urlpatterns=[
-        path('login',views.loginView,name='login'),
-        path('',views.shopperView,name='shopper'),
+        path('login',loginView,name='login'),
+        path('logout',logoutView,name='logout'),
+        path('',shopperView,name='shopper'),
+        path('shoppercart',shoppercartView,name='shoppercart'),
+        path('delete',deletAPI,name='delete'),
 ]

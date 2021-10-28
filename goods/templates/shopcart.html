@@ -61,7 +61,7 @@
             <li class="th th-chk">
               <div class="select-all">
                 <div class="cart-checkbox">
-                  <input class="CheckBoxShop check" id="" type="checkbox" num="all" name="select-all" value="true">
+                  <input class="CheckBoxShop check" id="" type="checkbox" num="all" name="select-all" value="false">
                 </div>
               </div>
             </li>
@@ -70,6 +70,7 @@
                 <a href="javascript:;"><img src="{{ c.img.url }}" alt=""></a>
                 <div class="text">
                   <div class="title">{{ c.name }}</div>
+                    <p hidden="hidden" class="commodityid">{{ c.id }}</p>
                     <p><span>{{ c.sezes }}</span></p>
                 </div>
               </div>
@@ -85,7 +86,7 @@
                 <input class="Quantity-input" type="" name="" value="{{ v }}" disabled="disabled">
                       {% endif %}
                       {% endfor %}
-                <div class="add layui-btn">+</div>
+                <div class="add layui-btn" type="button">+</div>
               </div>
             </li>
             <li class="th th-sum">
@@ -102,13 +103,14 @@
         <div class="th th-chk">
           <div class="select-all">
             <div class="cart-checkbox">
-              <input class="check-all check" id="" name="select-all" type="checkbox"  value="true">
+              <input class="check-all check" id="numcheck" name="select-all" type="checkbox"  value="true">
             </div>
             <label>&nbsp;&nbsp;已选<span class="Selected-pieces">0</span>件</label>
           </div>
         </div>
         <div class="th batch-deletion">
           <span class="batch-dele-btn">批量删除</span>
+            <p hidden="hidden" id="delete_all">{{ userID }}</p>
         </div>
         <div class="th Settlement">
           <button class="layui-btn">结算</button>
@@ -120,11 +122,3 @@
     </div>
   </div>
 {% endblock %}
-<script type="text/javascript">
-  layui.config({
-    base: '../pstatic/js/'
-  }).use(['mm','jquery','element','car'],function(){
-    var mm = layui.mm,$ = layui.$,element = layui.element,car = layui.car;
-    car.init()
-});
-</script>

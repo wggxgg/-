@@ -1,114 +1,50 @@
-
-{% load static %}
-
-    <div class="content content-nav-base commodity-content">
-    <div class="main-nav">
-        <div class="inner-cont0">
-            <div class="inner-cont1 w1200">
-                <div class="inner-cont2">
-                    <a href="index.html" class="active">首页</a>
-                    <a href="commodity.html">所有商品</a>
-                    <a href="shopcart.html">购物车</a>
-                    <a href="shopper.html">个人中心</a>
+<div class="addGoods">
+    <div class="goods_list">
+        <ul>
+            <li><img class="goods_img" src="../img/goods1.png">
+                <p>木林森男鞋</p>
+                <div class="goods_bottom">¥<span class="goods_price">198.00</span>
+                    <div class="num"><img class="minus" src="../img/minus.png"/><span>0</span><img class="plus"
+                                                                                                   src="../img/plus.png">
+                    </div>
                 </div>
-            </div>
+            </li>
+            <li><img class="goods_img" src="../img/goods2.png">
+                <p>Meizu/魅族 魅蓝E2</p>
+                <div class="goods_bottom">¥<span class="goods_price">1200.00</span>
+                    <div class="num"><img class="minus" src="../img/minus.png"/><span>0</span><img class="plus"
+                                                                                                   src="../img/plus.png">
+                    </div>
+                </div>
+            </li>
+            <li><img class="goods_img" src="../img/goods3.png">
+                <p>清风傲骨茶仓</p>
+                <div class="goods_bottom">¥<span class="goods_price">254.00</span>
+                    <div class="num"><img class="minus" src="../img/minus.png"/><span>0</span><img class="plus"
+                                                                                                   src="../img/plus.png">
+                    </div>
+                </div>
+            </li>
+            <li><img class="goods_img" src="../img/goods4.png">
+                <p>农家小米糯米锅巴</p>
+                <div class="goods_bottom">¥<span class="goods_price">22.90</span>
+                    <div class="num"><img class="minus" src="../img/minus.png"/><span>0</span><img class="plus"
+                                                                                                   src="../img/plus.png">
+                    </div>
+                </div>
+            </li>
+            <li><img class="goods_img" src="../img/goods5.png">
+                <p>安德玛 UA男子 Curry3</p>
+                <div class="goods_bottom">¥<span class="goods_price">7.00</span>
+                    <div class="num"><img class="minus" src="../img/minus.png"/><span>0</span><img class="plus"
+                                                                                                   src="../img/plus.png">
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="pay">共计<span class="totalNum">0</span>件
+            <p>总价¥<span class="totalPrice">0</span></p>
+            <button type="submit">去付款</button>
         </div>
     </div>
-    <div class="commod-cont-wrap">
-        <div class="commod-cont w1200 layui-clear">
-            <div class="left-nav">
-                <div class="title">所有分类</div>
-                <div class="list-box">
-                    {% for f in firsts %}
-                        <dl>
-                            <dt>{{ f.firsts }}</dt>
-                            {% for t in typeslist %}
-                                {% if t.firsts == f.firsts %}
-                                    <dd><a href="#">{{ t.seconds }}</a></dd>
-                                {% endif %}
-                            {% endfor %}
-                        </dl>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="right-cont-wrap">
-                <div class="right-cont">
-                    <div class="sort layui-clear">
-                        <a {% if not s or s == 'sold' %} class="active" {% endif %}
-                                                         href="{% url 'commondity' %}?t={{ t }}&s=sold&n={{ n }}">销量</a>
-                        <a {% if s == 'price' %} class="active" {% endif %}
-                                                 href="{% url 'commondity' %}?t={{ t }}&s=price&n={{ n }}">价格</a>
-                        <a {% if s == 'created' %} class="active" {% endif %}
-                                                   href="{% url 'commondity' %}?t={{ t }}&s=created&n={{ n }}">新品</a>
-                        <a {% if s == 'likes' %} class="active" {% endif %}
-                                                 href="{% url 'commondity' %}?t={{ t }}&s=likes&n={{ n }}">收藏</a>
-                    </div>
-                    <div class="prod-number">
-                        <a href="javascript:;">商品列表</a>
-                        <span></span>
-                        <a href="javascript:;">所有商品</a>
-                        <span></span>
-                        <a href="javascript:;">共{{ commodityinfos|length }}个商品</a>
-                    </div>
-                    <div class="cont-list layui-clear" id="list-cont">
-                        {% for p in paginator.object_list %}
-                            <div class="item">
-                                <div class="img">
-                                    <a href="{% url 'detail' p.id %}"><img  height="280" width="280" src="{{ p.img.url }}"></a>
-                                </div>
-                                <div class="text">
-                                    <p class="title">{{ p.name }}</p>
-                                    <p class="price">
-                                        <span class="pri">{{ p.price }}</span>
-                                        <span class="nub">{{ p.sold }}</span>
-                                    </p>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <div id="demo0" style="text-align: center;">
-                <div class="layui-box layui-laypage layui-laypage-default" id="layui-laypage-1">
-                    {% if paginator.has_previous %}
-                        <a href="{% url 'commondity' %}?t={{ t }}&s={{ s }}&n={{ n }}&p={{ paginator.page.previous_page_number }}"
-                           class="layui-laypage-prev">上一页</a>
-                    {% endif %}
-
-                    {% for page in paginator.paginator.page_range %}
-                        {% if paginator.number == page %}
-                            <span class="layui-laypage-curr"><em
-                                    class="layui-laypage-em"></em><em>{{ page }}</em></span>
-                        {% elif paginator.number|add:'-1' == page or paginator.number|add:'1' == page %}
-                            <a href="{% url 'commondity' %}?t={{ t }}&s={{ s }}&n={{ n }}&p={{ page }}">{{ page }}</a>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if paginator.has_next %}
-                        <a href="{% url 'commondity' %}?t={{ t }}&s={{ s }}&n={{ n }}&p={{ paginator.page.next_page_number }}"
-                           class="layui-laypage-next">下一页</a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-
-        layui.config({
-            base: '{% static 'js/' %}'
-        }).use(['mm', 'laypage', 'jquery'], function () {
-            var laypage = layui.laypage, $ = layui.$,
-                mm = layui.mm;
-            $('.list-box dt').on('click', function () {
-                if ($(this).attr('off')) {
-                    $(this).removeClass('active').siblings('dd').show()
-                    $(this).attr('off', '')
-                } else {
-                    $(this).addClass('active').siblings('dd').hide()
-                    $(this).attr('off', true)
-                }
-            })
-
-        });
-    </script>
 </div>

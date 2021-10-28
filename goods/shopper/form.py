@@ -28,7 +28,7 @@ class loginmodelform(forms.ModelForm):
         }
         widgets={
             'username':forms.TextInput(attrs={'class':'layui-input','placeholder':'输入手机号','lay-verify':'required|phone','id':'username'}),
-            'password':forms.TextInput(attrs={'class':'layui-input','placeholder':'输入密码','lay-verify':'required|password','id':'password'}),
+            'password':forms.TextInput(attrs={'type':'password','class':'layui-input','placeholder':'输入密码','lay-verify':'required|password','id':'password'}),
         }
 
     def clean_username(self):

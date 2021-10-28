@@ -79,7 +79,7 @@ def shoppercartView(request):
 
 def deletAPI(request):
     result={'state':'success'}
-    userId=request.GET.get('usweId','')
+    userId=request.GET.get('userid','')
     commodityid=request.GET.get('commodityid','')
     if userId:
         CartInfos.objects.filter(user_id=userId).delete()
